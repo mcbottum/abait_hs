@@ -1,0 +1,389 @@
+body{
+  /*width:981px;*/
+  max-width: 800px;
+  width: :90vw;
+	margin-left:auto;
+  margin-right: auto; 
+	text-align: left;
+	font:14px/1.33 Verdana, sans-serif;
+
+}
+fieldset {
+  max-width: 800px;
+  width:90vw;
+	margin: 10px;
+  /*margin-left: 5vw;*/
+	background:url(Images/bgrnd.png)repeat-x top;
+	-moz-border-radius:2.9ex;
+	-webkit-border-radius:2.4ex;
+	-moz-box-shadow: 5px 5px 5px grey;
+	-webkit-box-shadow: 5px 5px 5px grey;
+/*	box-shadow: 5px 5px 7px 3px grey;
+	border-bottom:3px solid #C3C3C3;
+	border-right:3px solid #C3C3C3;
+	border-top:3px solid grey;
+	border-left:3px solid grey;*/
+	padding: 4px;
+  box-shadow: inset 1px 1px 10px #000000;
+  padding-left: 8px;
+  padding-right: 5px;
+  padding-bottom: 8px;
+}
+
+.conent{
+  width: auto;
+}
+	
+#head { 
+	font-weight:bold;
+	font-size:20px;
+	text-align: center;
+	}
+
+.shadow {
+  -moz-box-shadow: 5px 5px 5px grey;
+  -webkit-box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px grey;
+}
+
+/*table {
+    border-collapse: collapse;
+
+	}*/
+
+.select_width{
+  width:350px;
+}
+
+/*input[type="checkbox"]{*/
+/*NOTE:  .classname will work for inputs as well :))))*/
+.checkbox{
+cursor: pointer;
+-webkit-appearance: none;
+appearance: none;
+/*background: #34495E;*/
+background: white;
+border-radius: 6px;
+box-sizing: border-box;
+/*position: relative;*/
+box-sizing: content-box ;
+width: 120px;
+height: 30px;
+border-width: 0;
+margin-bottom: -10px;
+transition: all .3s linear;
+background: url(select_if_now.png) 96% / 100% no-repeat white;
+z-index: -1; 
+
+}
+input[type="checkbox"]:checked{
+  /*background-color: #33aaff;*/
+  background: url(now.png) 96% / 100% no-repeat #33aaff;
+  border-width: 2;
+  border-color: black;
+  z-index: 1000; 
+}
+input[type="checkbox"]:focus{
+  outline:  #000000;
+  box-shadow: none;
+}
+
+    input[type=radio] {
+    border: 0px;
+    width: 30px;
+    height:30px;
+}
+
+input[type="text"] {
+	font-size: 20px;
+}
+
+select {
+  margin: 2px;
+  border: 1px solid #111;
+  background: transparent;
+  /*width: 150px;*/
+  padding: 5px 5px 5px 5px;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  height: 38px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /*background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee;*/
+  background: white;
+  width:500px;
+  text-align-last:center;
+}
+
+#head {
+  font-weight:bold;
+  font-size:20px;
+  text-align: center;
+  }
+
+#head2 {
+  font-weight:bold;
+  font-size:15px;
+  text-align: center;
+  margin-top:10px;
+  margin-bottom:10px;
+  }
+
+.shadow {
+  -moz-box-shadow: 5px 5px 5px grey;
+  -webkit-box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.center_header{
+  text-align: center !important;
+}
+
+
+table {
+  font-weight:normal;
+  font-size:14px;
+  border-collapse: collapse;
+  }
+table th{
+  background-color:   #C8C8C8;
+  padding: 5px;
+}
+table.center {margin-left:auto;
+  margin-right:auto;
+  font-weight:normal;
+  font-style:normal;
+  }
+table.table {
+    border-collapse: collapse;
+    height: 100px;
+
+  }
+table.table th{
+    border: 1px solid black;
+    background-color:   #C8C8C8;
+    text-align:center;
+    padding: 5px;
+  }
+table.table td{
+    border: 1px solid black;
+    padding-left: 5px;
+  }
+table.table tr:nth-child(even){
+  background-color: #f2f2f2;
+  }
+table.hover tbody tr:hover{
+    background-color: #D3D3D3;
+}
+
+/*~~~~~~~~~~~ TABLE SCROLLING ~~~~~~~~~~~~~~~*/
+table.scroll {
+    border-collapse: collapse;
+    height: 50px;
+    border-spacing: 0;
+}
+
+table.scroll tbody,
+table.scroll thead { display: block; }
+
+table.scroll thead th {
+    border: 1px solid black;
+    /*background-color: #32ED2C;*/
+    text-align:center;
+  /*width:75px;*/
+}
+
+table.scroll tbody {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+table.scroll tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+table.scroll tbody td{
+  /*width:75px;*/
+  border: 1px solid black;
+}
+
+table.global thead th{
+  width:200px;
+}
+table.noScroll {
+    border-collapse: collapse;
+    height: 50px;
+    border-spacing: 0;
+}
+
+table.noScroll tbody,
+table.noScroll thead { display: block; }
+
+table.noScroll thead th {
+    border: 1px solid black;
+    background-color: #32ED2C;
+    text-align:center;
+}
+
+table.noScroll tbody {
+    /*max-height: 500px;*/
+    overflow-y: auto;
+    /*overflow-x: hidden;*/
+}
+
+table.noScroll tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+table.noScroll tbody td{
+  border: 1px solid black;
+}
+/*~~~~~~~~~~~ TABLE SCROLLING ~~~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~ Tooltip style   ~~~~~~~~~~~~~~~*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color:rgba(0, 0, 0, 0.75);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    /*margin-left: -60px;*/
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+td.scaleIntensity{
+  font-size: 24px;
+}
+/* HTML
+
+<div class="tooltip">Hover over me
+  <span class="tooltiptext">Tooltip text</span>
+</div>
+
+*/
+
+/*~~~~~~~~~~~ Tooltip style   ~~~~~~~~~~~~~~~*/
+
+.raised {
+    /*box-shadow: inset 1px 1px 10px #000000;*/
+    box-shadow: inset 1px 1px 8px #8e8d8d;
+}
+
+
+
+
+/* GLOBALHEADER */
+#globalheader { width: 490px; height: 38px; margin-top: 0px ; margin-bottom:10px ; position: relative; z-index: 9998; margin-left:auto; margin-right:auto; }
+#globalheader #globalnav { margin: 0; padding: 0; }
+#globalheader #globalnav li { display: block; }
+/*FOR centering large menu*/
+/*#globalheader #globalnav li a { float: left; width: 245px; height: 0; padding-top: 38px; overflow: hidden; }*/
+#globalheader #globalnav li a { float:left; width: 245px; height: 0; padding-top: 38px; overflow: hidden; }
+#globalheader #globalnav li a,
+#globalheader #globalnav a{ background-image: url(ABAITshortmenu.png); background-repeat: no-repeat; }
+/*BUTTONS */
+/*for short menue*/
+#globalheader #globalnav li#gn-home a { background-position: 0 0; }
+#globalheader #globalnav li#gn-logout a { background-position: -245px 0; }
+
+/*#globalheader #globalnav li#gn-home a { background-position: 0 0; }
+#globalheader #globalnav li#gn-maps a { background-position: -245px 0; }
+#globalheader #globalnav li#gn-contact a { background-position: -490px 0; }
+#globalheader #globalnav li#gn-logout a { background-position: -735px 0; }*/
+/* OVER STATES */
+/*for short menue*/
+#globalheader #globalnav li#gn-home a:hover { background-position: 0 -39px; }
+#globalheader #globalnav li#gn-logout a:hover { background-position: -245px -39px; }
+
+
+/*#globalheader #globalnav li#gn-maps a:hover { background-position: -245px -39px; }
+#globalheader #globalnav li#gn-contact a:hover { background-position: -490px -39px; }
+#globalheader #globalnav li#gn-logout a:hover { background-position: -735px -39px; }*/
+/* PRESSED STATES */
+/*for short menue*/
+#globalheader #globalnav li#gn-home a:active { background-position: 0 -78px; }
+#globalheader #globalnav li#gn-logout a:active { background-position: -245px -78px; }
+
+
+/*#globalheader #globalnav li#gn-home a:active { background-position: 0 -78px; }
+#globalheader #globalnav li#gn-maps a:active { background-position: -245px -78px; }
+#globalheader #globalnav li#gn-contact a:active { background-position: -490px -78px; }
+#globalheader #globalnav li#gn-logout a:active { background-position: -735px -78px; }*/
+
+#menu p{
+	font-size:14px;
+	font-weight:normal;
+	font-style:normal;
+	}
+	
+#datamap{
+	float:right;
+	margin-top:12px;
+	margin-left:15px;
+	}
+#datamap_home{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    height: auto;
+  }
+#menu ol{
+	font-weight:normal;
+	font-style:normal;
+	font-size:14px;
+	}
+#termlist ul{
+	 list-style-type:none;
+}
+#footer { 
+/*height: 80px; */
+text-align: center; 
+font-size:10px; 
+color:#999999; 
+font-family:Verdana; 
+padding-top: 10px; 
+width: 100%; 
+left:0px; bottom:5px; 
+font-weight:normal;
+font-style:normal;
+}
+#submit{text-align:center;
+}
+#submit input{
+	margin-top: 10px;
+	border-radius: 6px;
+	font:19px/1.33 Verdana, sans-serif;
+	font-weight:bold;
+	color:#A65100;
+}
+
+/*for aligning columns withough cells*/
+span.tab{
+  display: inline-block !important; 
+  width: 150px !important; 
+}	
+	
+option.red_text{color: red;}
+	
+
+
+

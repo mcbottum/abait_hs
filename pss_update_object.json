@@ -1,0 +1,15 @@
+{
+    "pss_update": "<YYYY-MM-DDThh:mm:ssZ>",               	##  ISO 8601 formatted timestamp: 2020-04-26T12:27:46Z
+    "updates": [                                        	##  array of updates
+        {
+            "name": "<text identifier to display>",       	##  name to be displayed in application
+            "guid": "<128 bit identifier>",               	##  unique identifier
+            "role": "<admin | care-er | care-recipient>", 	##  role within application - please use your terminology
+            "facility": [                               	##  array since some updates may have multiple locations
+                "< facility 1 identifier >",              	##  unique identifier of location
+                "< facility ..n identifier >"
+            ],
+            "action": "< add | delete >"                  	## enroll, remove, etc.
+        }
+    ]
+}

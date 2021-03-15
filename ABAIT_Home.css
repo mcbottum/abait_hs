@@ -1,0 +1,134 @@
+#body{
+	/*background:url(adminbg.png) repeat-x top;*/
+	background:url(greybg.png) repeat-x top;
+	/*background:#f3f3f3;*/
+	border-bottom:3px solid #C3C3C3;
+	border-right:3px solid #C3C3C3;
+	border-top:3px solid grey;
+	border-left:3px solid grey;
+	font:13px/1.33 Verdana, sans-serif;
+	color:white;
+  	max-width: 90%;
+	margin-left:auto;
+  	margin-right: auto;
+	height:44em;
+	-moz-border-radius:2ex;
+  	-webkit-border-radius:2ex;
+  		box-shadow: inset 1px 1px 15px #000000;
+	}
+
+table.center {
+	margin-left:auto; margin-right:auto;
+	}
+
+#welcome {
+	/*{background:url(greenbgnd.png) repeat-x top;*/
+	background-image: linear-gradient(lime, forestgreen);
+	max-width: 80%;
+
+	margin-left: auto ;
+ 	margin-right: auto ;
+	margin-top:60px;
+	-moz-border-radius:2ex;
+  	-webkit-border-radius:1.5ex;
+	/*height:5.5em;*/
+	border:2px solid black;
+	/*height: auto;*/
+
+	}
+
+
+#login {
+	background:url(Images/login4.png) repeat-x top;
+	/*background:#f8c6a5;*/
+	margin-top:100px;
+	-moz-border-radius:2ex;
+  	-webkit-border-radius:1.5ex;
+  	border:2px solid grey;
+	
+	}
+
+#submit {
+	margin-top:5px;
+}
+
+.shadow {
+  -moz-box-shadow: 5px 5px 5px grey;
+  -webkit-box-shadow: 5px 5px 5px grey;
+  box-shadow: 5px 5px 5px grey;
+  /*box-shadow: inset 0 0 5px #000000;*/
+}
+
+#head{
+
+	/*margin-top: -60px;*/
+	text-align: center;
+	vertical-align: bottom;
+	color:white;
+	font-style:italic;
+	font-variant:small-caps;
+	}
+
+#logo3{	margin-top:20px;
+	}
+	
+#homename{
+	margin-left: 10px;
+
+	font:20px/1.33 Verdana, sans-serif;
+	color:black;
+	}
+#homename_no_graphic{
+	margin-left: 10px;
+	margin-top:-60px;
+	font:20px/1.33 Verdana, sans-serif;
+	color:black;
+	}
+
+#homename input{
+  	height:2em;
+  	margin-left: 10px;
+	font:18px/1.33 Verdana, sans-serif;
+	font-weight:bold;
+	color:#A65100;
+	}
+
+#homename input#graphical_interface{
+	height:1em;
+}
+#aboutabait{
+	margin-top:10px;
+	margin-left:auto;
+	margin-right:;
+	cursor:pointer;
+}
+	
+#footer { 
+	clear:both;
+	height: 80px; 
+	text-align: center; 
+	font-size:10px; 
+	color:#999999; 
+	font-family:Verdana; 
+	padding-top: 0px; 
+	width: 100%; 
+	left:0px; bottom:0px; 
+	font-weight:normal;
+	font-style:normal;
+	margin-bottom:-20px;
+	}
+	#footer a{
+		padding-top: 10px;
+	}
+	#footer a:link{
+		color:#999999;
+		margin-top: -5px;
+	}
+		#footer a:hover{
+		color:#4F5A64;
+	}
+		#footer a:visited{
+		color:#999999;
+	}
+
+	

@@ -1,0 +1,61 @@
+body{
+	background:url(adminbg.png) repeat-x top;
+	font:13px/1.33 Verdana, sans-serif;
+	color:white;
+	width:1000px;
+	margin:0 auto;
+	margin-top:1em;
+	height:55em;
+	}
+fieldset{
+	margin-top:10em;
+	-moz-border-radius:2ex;
+  	-webkit-border-radius:1.5ex;
+	
+}
+#head{
+	text-align:center;
+	vertical-align:bottom;
+	border:2px solid black;
+	background:url(greenbgnd.png) repeat-x top;
+	color:white;
+	font-style:italic;
+	font-variant:small-caps;
+	height:4.6em;
+	 -moz-border-radius:2ex;
+ 	 -webkit-border-radius:1.5ex;
+	}
+
+#logo3{float:left;
+	margin-top:5em;
+	margin-left:16em;
+	width: 200px;
+	}
+
+#homename{
+	float:left;
+	margin-top:3em;
+	margin-left:5em;
+	text-align:center;
+	font-weight:bold;
+	}	
+
+#homename input{
+  	height:2em;
+	font:16px/1.33 Verdana, sans-serif;
+	font-weight:bold;
+	color:#A65100;
+	}
+
+#footer { 
+height: 80px; 
+text-align: center; 
+font-size:10px; 
+color:#999999; 
+font-family:Verdana; 
+padding-top: 10px; 
+width: 100%; 
+position:fixed; left:0px; bottom:0px; 
+}
+
+	

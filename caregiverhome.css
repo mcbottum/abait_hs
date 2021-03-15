@@ -1,0 +1,109 @@
+body{
+	background:#206876;
+	font:13px/1.33 Verdana, sans-serif;
+	max-width: 90%;
+}
+body h2{color:white;text-align:center;
+}
+
+#head{
+	text-align:center;
+	vertical-align:bottom;
+	border-top:2px solid #5FBDCE;
+	border-bottom:2px solid black;
+	background:#04859D url(bluegradient.png) repeat-x top;
+	color:white;
+	font-style:italic;
+	font-variant:small-caps;
+	height:5em;
+	}
+#logo1{
+	position:absolute;
+	top:5px;
+	left:985px;
+	height:80px;
+}
+#logo{
+	position:absolute;
+	top:5px;
+	left:44px;
+	height:80px;
+}
+#label {margin-left:0em;
+color:white;
+}
+#menu ul{
+	margin-left:6em;
+	width:25em;
+	clear:left;
+	margin-left:-2.5em;
+	display:block;
+	font:13px/1.33 Verdana, sans-serif;
+}
+#menu li {
+	list-style-type:none;
+	border;
+	display:block;
+	text-decoration:none;
+	background-color: #206876;
+}
+#menu li:hover{
+	color:white;
+	display:block;
+}
+	
+#menu a{margin-left:23em;
+	width:25em;
+	display:block;
+	background-color:#5FBDCE;
+	color:black;
+	border:1px solid #A65100;
+	padding: 0.25em;
+	font-variant:small-caps;
+	font:15px/1.33 Verdana, sans-serif;
+	text-decoration:none;
+	text-align:center;
+}
+
+#menu a:hover{
+	
+		background:#04859D url(bluegradient.png) repeat-x top;
+		border-top:2px solid #FF7400;
+		border-left:2px solid #FF7400;
+		color:white;
+ }	
+
+#submit{
+	position:relative; 
+	text-align:center;
+	clear:left;
+	width:38em;
+	float:left;
+	margin-top:8em;}
+#submit input{
+	height:3em;
+	font:25px/1.33 Verdana, sans-serif;
+	font-weight:bold;
+	color:#A65100;
+	}
+
+
+#image3 { 
+position: absolute; 
+left: 940px; 
+top: 250px; 
+width: 300px; 
+
+border:black 2px solid;
+}
+
+#footer { 
+height: 80px; 
+text-align: center; 
+font-size:10px; 
+color:#999999; 
+font-family:Verdana; 
+padding-top: 10px; 
+width: 100%; 
+position:fixed; left:0px; bottom:5px; 
+}
