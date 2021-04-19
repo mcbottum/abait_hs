@@ -133,7 +133,11 @@ set_css()
 	$resident = '';
 	$house=$_SESSION['house'];
 	if($_SESSION['privilege']=='caregiver' && !isset($_GET["k"])){
-		if($house=='all'){
+		if(isset($_SESSION['community'])){
+			echo "in community   ";
+			echo $_SESSION['community'];
+			$_SESSION['sql']="SELECT * FROM residentpersonaldata WHERE community='$_SESSION[community]' order by first";
+		}else if($house=='all'){
 			$_SESSION['sql']="SELECT * FROM residentpersonaldata WHERE Target_Population='$Population_strip' order by first";
 		}else{
 			$_SESSION['sql']="SELECT * FROM residentpersonaldata WHERE Target_Population='$Population_strip' AND house='$house' order by first";
@@ -255,7 +259,7 @@ set_css()
 				print "<select class='custom-select custom-select-lg mb-3' data-width='auto' name='residentkey' onchange=\"reload(this.form)\"><optGroup><option value=''>$select_option</option></optGroup>"."<BR>";
 
 					while($row1= mysqli_fetch_array($session1)) { 
-							if($row1[residentkey]==$residentkey){
+							if($row1['residentkey']==$residentkey){
 								print "<optGroup>";
 									print "<option selected value=$residentkey>$row1[first] $row1[last]</option>";
 								print "</optGroup>";
@@ -289,7 +293,7 @@ set_css()
 									print "<option selected value='$sn'>$row3[scale_name]</option>";
 								print "</optGroup>";
 							}	
-							elseif(!in_array($row3[scale_name],$sn_array)){
+							elseif(!in_array($row3['scale_name'],$sn_array)){
 								print "<optGroup>";
 									print  "<option value='$sn'>$row3[scale_name]</option>";
 								print "</optGroup>";		
@@ -330,8 +334,8 @@ set_css()
 		print"<input type='hidden' name='sn' value=$scale_name>";
 			print "<select class='custom-select custom-select-lg mb-3' data-width='auto' name='trig' onchange=\"reload3(this.form)\"><optGroup><option value=''>Select a Trigger</option></optGroup>";
 					while($row7= mysqli_fetch_array($session7)) { 
-						$trigger_sr=str_replace(' ','_',$row7[trig]);
-						if($row7[mapkey]==$trig){
+						$trigger_sr=str_replace(' ','_',$row7['trig']);
+						if($row7['mapkey']==$trig){
 							print "<optGroup>";
 								print "<option selected value='$row7[mapkey]'>$row7[trig]</option>";
 							print "</optGroup>";

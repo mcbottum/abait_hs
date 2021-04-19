@@ -7,7 +7,7 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 
 
 //******** FOR Careers *************//
-        $live_updates = file_get_contents('https://pcspublicfiles.blob.core.windows.net/integration-poc/abait/Handsale/AllStaff.json?sv=2019-10-10&se=2021-03-31T23%3A00%3A00Z&si=ABAIT&sr=b&sig=gHUZqEbA8%2F3SqaETAlY3c%2FZp4a1Co%2FWDeVMDFY4T594%3D');
+        $live_updates = file_get_contents('https://pcspublicfiles.blob.core.windows.net/integration-poc/abait/CleverCare/AllStaff.json?sv=2019-10-10&se=2021-12-01T00%3A00%3A00Z&si=ABAIT&sr=b&sig=CEnc8afA9KNZT9p6g2ccste7KLZ0ilwKCif85aXCBoE%3D');
 
 	$decoded_update = json_decode($live_updates, true);
 
@@ -19,11 +19,17 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 	// $host = 'localhost';
 	// $db_user = 'abait';
 
-// FOR DREAMHOST LIVE
- 	$db = 'agitation_hs';
- 	$host = 'mysqlhs.abaitscale.com';
- 	$db_user = 'abaiths';
- 	$db_pwd = 'v2q9as659e%tzfe';
+// FOR DREAMHOST LIVE hs
+ 	// $db = 'agitation_hs';
+ 	// $host = 'mysqlhs.abaitscale.com';
+ 	// $db_user = 'abaiths';
+ 	// $db_pwd = 'v2q9as659e%tzfe';
+// FOR DREAMHOST LIVE cog
+ 	$db = 'agitation_cog';
+ 	$host = 'mysqlcog.abaitscale.com';
+ 	$db_user = 'abaitcog';
+ 	$db_pwd = 'abaitcog13!';
+ 	$set_house_to_all = false;
 	
 	$conn=mysqli_connect($host,$db_user,$db_pwd, $db);
 
@@ -49,6 +55,7 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 
 	foreach($decoded_update as $value){
 
+		// Get House
 		$house_match=false;
 		if($db=="agitation_indp"){
 			foreach($houses as $house){
@@ -57,10 +64,13 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 			   		break;
 				}
 			}
-		}else{
-			//$house_match=$value['communityName'];
+		}else if($set_house_to_all){
 			$house_match="all";
+		}else{
+			$house_match=$value['communityName'];
 		}
+
+		// If no job title, assume record is a resident
 		if(!array_key_exists("jobTitle",$value)){
 			$resident=true;
 		}else{
@@ -68,15 +78,13 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 		}
 
 		if($house_match){
-
 			// NOTE - should take entire GUID going forward then match like in passcheck
 			// $pwd = substr($value["personID"], 0, 5);
 			
-			
-
-#### ONE TIME ONLY ####
+			// Get pwd
 			$pwd = $value['connectionID'];
-			#$sql="SELECT * FROM personaldata WHERE password LIKE '$pwd'";
+
+			// Get Name
 			$name = explode(" ", $value["workerName"]);
 			if(count($name)<2){
 				$name[]="";
@@ -85,56 +93,61 @@ $houses = ["Mount Pleasant","Old House","Westwood", "Howard","Oxford","Pembroke"
 				$last=$name[1];
 			}
 
-			$sql="SELECT * FROM personaldata WHERE first LIKE '$first' AND last LIKE '$last'";
+			// Get access level
+			$accesslevel="";
+			if(stripos($value['jobTitle'],"manager")!==false || stripos($value['roleDescription'],"manager")!==false){
+				$accesslevel="admin";
+			}else if(stripos($value['jobTitle'],"carer")!==false || stripos($value['roleDescription'],"carer")!==false || stripos($value['roleDescription'],"nurse")!==false){
+				$accesslevel='caregiver';
+			}
 
-#####  ABOVE #####
-
-			$full_pwd = $value["personID"];
-			$connection_pwd = $value["connectionID"];
-
+			// If already have record
+			$sql="SELECT * FROM personaldata WHERE password LIKE '$pwd'";
 			$check=mysqli_query($conn,$sql);
 
-			$accesslevel="";
+			//$full_pwd = $value["personID"]; // Don't really need this any more
+			// $connection_pwd = $value["connectionID"];
+
 			if(!$check || mysqli_num_rows($check) == 0){
 
-				echo "DID NOT FIND ".$first." ".$last;
-
-					// if(stripos(strtolower($value['jobTitle']),"director")!==false){
-					// 	$accesslevel="admin";
-					// }else if(stripos(strtolower($value['jobTitle']),"care")!==false){
-					// 	$accesslevel='caregiver';
-					// }
-					// $name = explode(" ", $value["workerName"]);
-					// if(count($name)<2){
-					// 	$name[]="";
-					// }else{
-					// 	$first=$name[0];
-					// 	$last=$name[1];
-					// }
-
-					// mysqli_query($conn,"INSERT INTO personaldata VALUES(null,'$date','$pwd','$accesslevel','$first','$last',null,null,null,null,null,null,null,null,null,'$privilegekey','$Target_Population','$house_match')");
+					$community_name = $value['communityName'];
+					mysqli_query($conn,"INSERT INTO personaldata VALUES(null,'$date','$pwd','$accesslevel','$first','$last',null,null,null,null,null,null,null,null,null,'$privilegekey','$Target_Population','$house_match','$community_name')");
 				
-			}elseif(mysqli_num_rows($check) > 0 && !$resident){
+			}elseif(mysqli_num_rows($check) > 0){
+
 				$row1=mysqli_fetch_assoc($check);
-				$row_id = $row1['personaldatakey'];
 
 				// mysqli_query($conn,"UPDATE personaldata SET password='$full_pwd' WHERE password LIKE '$pwd%'");
 
-				if($row1['house']!='all'){
+				//  NEED TO THINK MORE ABOUT THIS
+				// if($row1['house']!=$house_match) && $row1['house']!='all'){
+				// 	$concat_house = ",".$house_match;
+				// 	mysqli_query($conn,"UPDATE personaldata SET house=concat(house,'$concat_house') WHERE password LIKE '$pwd'");
+				// }
 
-					if($row1['house']!=$house_match){
+				// if($row1['house']!='all'){
+
+					// if($row1['house']!=$house_match){
 					
-							mysqli_query($conn,"UPDATE personaldata SET house='all' WHERE password LIKE '$pwd'");
+							// mysqli_query($conn,"UPDATE personaldata SET house='all' WHERE password LIKE '$pwd'");
+				echo $value['locationID'];
+				if($row1['community']){
+					$concat_value = ",".$value['communityName'];
+				}else{
+					$concat_value = $value['communityName'];
+				}
+				$concat_value = ",".$value['communityName'];
+				mysqli_query($conn,"UPDATE personaldata SET commuity=concat(community,'$concat_value') WHERE password='$pwd'");
+				// mysqli_query($conn,"UPDATE personaldata SET community='$value[communityName]' WHERE password LIKE '$pwd'");
 						
 							// echo "updated  ";
-					}
-				}
+					// }
+				// }
 
-				mysqli_query($conn,"UPDATE personaldata SET password='$connection_pwd' WHERE personaldatakey='$row_id'"); 
+				//mysqli_query($conn,"UPDATE personaldata SET password='$connection_pwd' WHERE personaldatakey='$row_id'"); 
 
 			}
 		}
-		
 	}
 // }
 ?>

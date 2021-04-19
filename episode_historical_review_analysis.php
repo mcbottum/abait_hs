@@ -149,20 +149,32 @@ if($filename=="Submit Resident for Global Analysis"){
 			$reviewtime=Null;
 		}
 
+		if(isset($_REQUEST['include_unmapped'])){
+			$include_unmapped=$_REQUEST['include_unmapped'];
+		}else{
+			$include_unmapped=Null;
+		}
+
+		// Default date end is now
+		$date_end=date("Y-m-d");
+
+		if($reviewtime=="previous"){
+			$date_start=date('Y-m-d', strtotime('first day of last month'));
+			$date_end=date('Y-m-d', strtotime('last day of last month'));
+		}
+
+		if($reviewtime==1){
+			$date_start=date('Y-m-d',(strtotime('- 30 days')));
+		}
 		if($reviewtime==3){
-		$date_start=date('Y-m-d',(strtotime('- 90 days')));
+			$date_start=date('Y-m-d',(strtotime('- 90 days')));
 		}
 		if($reviewtime==6){
-		$date_start=date('Y-m-d',(strtotime('- 180 days')));
+			$date_start=date('Y-m-d',(strtotime('- 180 days')));
 		}
 		if($reviewtime=='all'){
-		$date_start=date('Y-m-d',(strtotime('- 10000 days')));
-		}
-		if($reviewtime!=3 && $reviewtime!=6 && $reviewtime!=10 && $reviewtime!='all'){
-			$reviewtime=$_REQUEST['customtime'];
-		}
-		if(empty($reviewtime)){
-		$date_start=date('Y-m-d',(strtotime('- 30 days')));
+			$date_start=date('Y-m-d',(strtotime('- 10000 days')));
+
 		}
 
 		$title='Global Analysis';
@@ -374,7 +386,7 @@ if($episode_time_of_day){///////////////////////////////////////time of day/////
 		$graphTitle_bar='Count of Episodes per Three Hour Interval';
 		$yLabel_bar=' Episode Count';
 		$xLabel_bar='|-------Day Shift-------||------PM Shift------||-----Night Shift-----|';
-	if(count($values_bar_e!=0)){
+	if(!empty($values_bar_e)){
 	ABAIT_bar_graph($values_bar_e, $graphTitle_bar, $yLabel_bar,$xLabel_bar,$j);
 	}
 	//call graph function
@@ -382,9 +394,11 @@ if($episode_time_of_day){///////////////////////////////////////time of day/////
 		$graphTitle_bar='Duration of Behavior Episodes per Three Hour Interval';
 		$yLabel_bar='Total Episode Duration (minutes)';
 		$xLabel_bar='|-------Day Shift-------||------PM Shift------||-----Night Shift-----|';
-	if(count($values_bar_d!=0)){
-	ABAIT_bar_graph($values_bar_d, $graphTitle_bar, $yLabel_bar,$xLabel_bar,$j+10);
-	}
+
+		if(!empty($values_bar_d)){
+			ABAIT_bar_graph($values_bar_d, $graphTitle_bar, $yLabel_bar,$xLabel_bar,$j+5);
+		}
+
 
 	if($j==count($sql_array)-1&&in_array($sql_all,$sql_array)){
 		print"<h3 class='center_header'>Episode per Time of Day for <em>All</em> Triggers</h3>\n";
@@ -425,7 +439,8 @@ if($episode_time_of_day){///////////////////////////////////////time of day/////
 								foreach($episode_start_array as $i){
 										print "<td>${'sum_duration'.$i}</td>";
 								}
-								print"<td><INPUT class='icon' height='35' type=\"image\" src=\"Images/chart_icon.png\" onClick=\"window.open('behaviorgraph'+($j+10)+'.png','','width=700px,height=400')\"></td>";
+								$j5 = $j+5;
+								print"<td><INPUT class='icon' height='35' type=\"image\" src=\"Images/chart_icon.png\" onClick=\"window.open('behaviorgraph'+$j5+'.png','','width=700px,height=400')\"></td>";
 
 						print"</tr>\n";
 					print "</tbody>";
@@ -789,6 +804,77 @@ if($all_episode){//////////////////////////////////////////all_episode//////////
 
 
 }//end all_epsisode if
+
+if($include_unmapped){//////////////////////////////////////////include_unmapped/////////////////////////////////////////
+		if($residentkey=='all_residents'){
+			$sql="SELECT * FROM resident_mapping WHERE date > '$date_start' AND date <= '$date_end' ORDER BY date, residentkey";
+		}else{
+			$sql="SELECT * FROM resident_mapping WHERE residentkey='$residentkey' AND date > '$date_start' AND date <= '$date_end' ORDER BY date";
+		}
+
+
+		$session=mysqli_query($conn,$sql);
+
+			print "<table width='100%'>";//
+				print "<tr><td>";//table in table data for more info
+				print"<h3 class='center_header'>Unmapped Behavior Episode Report</h3>";
+				print"</td></tr>";
+
+        print "<table class='center noScroll local hover'  bgcolor='white'>";
+          print "<thead>";
+						print "<tr>";
+
+							print "<th></th>";
+							print "<th>Start Date</th>";
+							print "<th>$date_start</th>";
+							print "<th>End Date</th>";
+							print "<th>$date_end</th>";
+							print "<th></th>";
+
+							print "</tr>";
+						print "<tr>";
+
+							print "<th>Resident</th>";
+							print "<th>Date</th>";
+							print "<th>Time</th>";
+							print "<th>Behavior Classification</th>";
+							print "<th>Trigger</th>";
+							print "<th>PRN Given</th>";
+
+					print "</tr>";
+				print"</thead>";
+				print"<tbody>";
+				$total_duration = 0;
+				while($row=mysqli_fetch_assoc($session)){
+					$total_duration += $row['duration'];
+					$rk = $row['residentkey'];
+					//$residentkey_assoc_array[$rk]
+					print "<tr>";
+
+							print"<td>$residentkey_assoc_array[$rk]</td>";
+							print"<td>$row[date]</td>";
+							print"<td>$row[time]</td>";
+							print"<td>$row[behavior]</td>";
+							print"<td>$row[trigger]</td>";
+							if($row['PRN']==1){
+								print"<td>Yes</td>";
+							}else{
+								print"<td>None</td>";
+							}
+
+					print "</tr>";
+				}
+					print "<tr>";
+						print "<td colspan=3>Total Duration of Episodes (min) </td>";
+						print "<td colspan=3>$total_duration</tr>";
+					print "</tr>";
+				print"</tbody>";
+			print "</table>";
+		print "</td></tr>";
+	print "</table>";
+
+
+}//end include_unmapped if
 
 print "<p class='backButton'>";
 	print "<input	type = 'button'

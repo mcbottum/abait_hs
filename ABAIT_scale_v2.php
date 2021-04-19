@@ -25,26 +25,29 @@ set_css()
 <script>
 function validate_form()
 {
+
     valid=true;
     var alertstring=new String("");
 
-    if (document.form1.date.checked == false&&document.form1.datetimepicker.value=="" ) {
-        alertstring=alertstring+"\n-either today or other date of episode-";
-        document.getElementById("date_header").style.background = "yellow";
-        document.form1.datetimepicker.style.background = "Yellow";
+    // if (document.form1.date.checked == false&&document.form1.datetimepicker.value=="" ) {
+    //     alertstring=alertstring+"\n-either today or other date of episode-";
+    //     document.getElementById("date_header").style.background = "yellow";
+    //     document.form1.datetimepicker.style.background = "Yellow";
 
-        valid=false;
-    }else if (document.form1.date.checked ) {
-        document.form1.date.style.background = "white";
+    //     valid=false;
+    // }else if (document.form1.date.checked ) {
+    //     document.form1.date.style.background = "white";
 
-    }//end date of episode check
+    // }//end date of episode check
 
     if(document.form1.duration.selectedIndex==""){
         alertstring=alertstring+"\n-Duration of the Behavior Episode-";
         document.form1.duration.style.background = "Yellow";
         valid=false;
+
     }else{
         document.form1.duration.style.background = "white";
+
     }//end ampm check
 
     var rb=radiobutton(document.form1.intensityB);

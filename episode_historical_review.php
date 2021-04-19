@@ -204,7 +204,10 @@ $scale_array=array();
 			print "<table class='table' border='1' bgcolor='white'>";
 
 			?>
-				<h3 align='center'>Design Review <input type='submit' value='Tap for more Info' onClick="alert('Selecting checkboxes allows a customizable analysis. Review dates are from selected interval to present.');return false"></h3>
+				<h3 align='center'>Design Review <input type='submit' value='Info' onClick="alert('Selecting checkboxes allows a customizable analysis. Review dates are from selected interval to present.');return false"></h3>
+				<h5 align='center'><label><input type='checkbox'
+									name='include_unmapped'
+									value='1'>Include Unmapped Behavior Report</label></h5>
 			<?
 				print "<thead>";
 					print "<tr>\n";
@@ -220,13 +223,25 @@ $scale_array=array();
 							print "<label>";
 							print "<input type='radio'
 								name= 'review_time'
-								value= '3'>3 Month</label></td></tr>\n";
+								value= 'previous'>Previous Month</label></td></tr>\n";
+								
+							print "<tr><td>";
+							print "<label>";
+							print "<input type='radio'
+								name= 'review_time'
+								value= '1'>30 Days</label></td></tr>\n";
+
+							print "<tr><td>";
+							print "<label>";
+							print "<input type='radio'
+								name= 'review_time'
+								value= '3'>90 Days</label></td></tr>\n";
 
 							print "<tr><td>";
 							print "<label>";
 							print "<input type='radio'
 									name='review_time'
-									value='6'>6 Month</label></td></tr>\n";
+									value='6'>180 Days</label></td></tr>\n";
 
 							print "<tr><td>";
 							print "<label>";
@@ -293,9 +308,9 @@ $scale_array=array();
 					print"</td></tr>\n";
 				print "</tbody>";
 			print "</table>";
-		print "</td><th>";
+		print "</td>";
 
-		print "</th></tr></table>";// table for javascript comment
+		print "</tr></table>";// table for javascript comment
 ?>
 			<div id = "submit">
 				<input 	type = "submit"

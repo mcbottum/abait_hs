@@ -1,8 +1,3 @@
-
-
-<?
-session_start();
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,11 +9,13 @@ session_start();
 </head>
 <body>
 
-<form action="https://hs.abaitscale.com/ABAIT_passcheck_v2.php" method="post">
+<form action="https://cog.abaitscale.com/ABAIT_passcheck_v2.php" method="post">
 	
-	<input type="hidden" name="abait" value="f6f5f528-1f5c-4010-bcb0-b7dfe4ba9b"></input>
+	<input type="hidden" name="abait" value="c18af966-1de2-4fe4-b62e-157658668daa"></input>
 	<input type="hidden" name="client" value="YYY"></input>
-        <input type="hidden" name="returnurl" value="https://google.com"></input>
+    <input type="hidden" name="returnurl" value="https://google.com"></input>
+    <input type="hidden" name="client" value="f256c838-a9df-49d6-b646-d9b190ee3911"></input>
+    <input type="hidden" name="community" value="Hartlepool House"></input>
 	<button type="submit" class="btn-link">Go</button>
 
 

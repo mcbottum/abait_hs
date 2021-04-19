@@ -401,10 +401,8 @@ function build_page_pg($display='none'){
 			      	<li class="nav-item">
 <?
 					if($_SESSION['remote_login']){
-
-						print"<a class='navbar-brand p-3' href='$_SESSION[returnurl]'>Leave ABAIT</a>";
-						?><!-- <button type="button" class="btn btn-danger" onclick="goHome()">EXIT ABAIT</button> --><?
-	
+						// print"<a class='navbar-brand p-3' href='$_SESSION[returnurl]'>Leave ABAIT</a>";
+						print"<a class='navbar-brand p-3' href='ABAIT_logout_v2.php'>Leave ABAIT</a>";
 					}else{
 ?>
 			        	<a class="navbar-brand p-3" href="ABAIT_logout_v2.php">Logout</a>

@@ -19,8 +19,12 @@ if(isset($_REQUEST['client'])){
 }else{
 	$k=Null;
 }
+if(isset($_REQUEST['community'])){
+	$_SESSION['community']=$_REQUEST['community'];
+}else{
+	$_SESSION['community']=Null;
+}
 ?>
-
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta http-equiv="Content-Type"content="text/html;
@@ -42,10 +46,10 @@ charset=utf-8"/>
 // $db_pwd = 'abait123!';
 
 // for remote:
- $db = 'agitation_hs';
- $host = 'mysqlhs.abaitscale.com';
- $db_user = 'abaiths';
- $db_pwd = 'v2q9as659e%tzfe';
+ $db = 'agitation_cog';
+ $host = 'mysqlcog.abaitscale.com';
+ $db_user = 'abaitcog';
+ $db_pwd = 'abaitcog13!';
 
 $_SESSION['db'] = $db;
 $_SESSION['passwordcheck']='fail';
@@ -148,7 +152,10 @@ $filename =$_REQUEST["submit"];
 					}else{
 						$nextfile="ABAIT_caregiverhome_v2.php";
 					}
-
+					// Probably should get community from request, not db
+					// if(array_key_exists('community', $row1)){
+					// 	$_SESSION['community']=$row1['community'];
+					// }
 					$_SESSION['home_page']='ABAIT_caregiverhome_v2.php';
 					$_SESSION['passwordcheck']='pass';
 					$_SESSION['personaldatakey']=$row1['personaldatakey'];
